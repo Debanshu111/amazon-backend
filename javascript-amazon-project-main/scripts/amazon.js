@@ -14,7 +14,7 @@ const products = [
     image: "images/products/intermediate-composite-basketball.jpg",
     name: "Intermediate Size Basketball",
     rating: {
-      stars: 4,
+      stars: 4.0,
       count: 127,
     },
     priceCents: 2095,
@@ -30,10 +30,15 @@ const products = [
   },
 ];
 
+
+let productsHTML = ''; // created to combine all of it
+
 //looping through the array
 // `` signs are used to write html inside js file
 products.forEach((itemsInAmazonForUsers) => {
-  const html = `<div class="product-container"> 
+//   const html =
+productsHTML = productsHTML +
+  `<div class="product-container"> 
           <div class="product-image-container">
             <img class="product-image"
               src="${itemsInAmazonForUsers.image}">
@@ -45,13 +50,13 @@ products.forEach((itemsInAmazonForUsers) => {
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${itemsInAmazonForUsers.rating.stars}.png">
+              src="images/ratings/rating-${(itemsInAmazonForUsers.rating.stars)}.png">
             <div class="product-rating-count link-primary">
             ${itemsInAmazonForUsers.rating.count}
             </div>
           </div>
           <div class="product-price">
-            $${itemsInAmazonForUsers.priceCents / 100}
+            $${(itemsInAmazonForUsers.priceCents / 100).toFixed(2)}
           </div>
 
           <div class="product-quantity-container">
@@ -80,5 +85,9 @@ products.forEach((itemsInAmazonForUsers) => {
             Add to Cart
           </button>
         </div>`;
-        console.log(html);
+        // console.log(html);
 });
+console.log(productsHTML);
+
+//To search/detect the class used in HTML
+document.querySelector('.js-products-grid').innerHTML = productsHTML;

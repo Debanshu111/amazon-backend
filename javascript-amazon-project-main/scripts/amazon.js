@@ -50,7 +50,7 @@ productsHTML = productsHTML +
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${(itemsInAmazonForUsers.rating.stars)}.png">
+              src="images/ratings/rating-${(itemsInAmazonForUsers.rating.stars.toFixed(1))}.png">
             <div class="product-rating-count link-primary">
             ${itemsInAmazonForUsers.rating.count}
             </div>

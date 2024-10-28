@@ -60,10 +60,23 @@ document.querySelectorAll(".addToCart").forEach((button) => {
   button.addEventListener("click", () => {
     // console.log(button.dataset.attrProductName); // attrProductName shows in console
     const ProductName = button.dataset.attrProductName;
-    cart.push({
-      ProductName: ProductName,
-      quantity: 1,
+    //use a variable for matched item to use it later
+    let matchingItem;
+    //check if the item in the cart is already present
+    cart.forEach((item) => {
+      if (ProductName === item.ProductName) {
+        matchingItem = item;
+      }
     });
+    // Then increase the count instead
+    if (matchingItem) {
+      matchingItem.quantity = matchingItem.quantity + 1;
+    } else {
+      cart.push({
+        ProductName: ProductName,
+        quantity: 1,
+      });
+    }
     console.log(cart);
   });
 });

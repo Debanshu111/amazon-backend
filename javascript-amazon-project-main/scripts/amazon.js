@@ -80,8 +80,7 @@ productsHTML = productsHTML +
             <img src="images/icons/checkmark.png">
             Added
           </div>
-
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary addToCart" >
             Add to Cart
           </button>
         </div>`;
@@ -91,3 +90,10 @@ console.log(productsHTML);
 
 //To search/detect the class used in HTML
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+
+//Add to Cart fuction for all products that are selected
+document.querySelectorAll('.addToCart').forEach((button) => {
+  button.addEventListener('click', () => {
+    // console.log('Added product')
+  })
+});

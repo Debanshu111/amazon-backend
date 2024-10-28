@@ -1,7 +1,8 @@
-let productsHTML = '';
+let productsHTML = "";
 products.forEach((itemsInAmazonForUsers) => {
-productsHTML = productsHTML +
-  `<div class="product-container"> 
+  productsHTML =
+    productsHTML +
+    `<div class="product-container"> 
           <div class="product-image-container">
             <img class="product-image"
               src="${itemsInAmazonForUsers.image}">
@@ -13,7 +14,9 @@ productsHTML = productsHTML +
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${(itemsInAmazonForUsers.rating.stars.toFixed(1))}.png">
+              src="images/ratings/rating-${itemsInAmazonForUsers.rating.stars.toFixed(
+                1
+              )}.png">
             <div class="product-rating-count link-primary">
             ${itemsInAmazonForUsers.rating.count}
             </div>
@@ -43,15 +46,24 @@ productsHTML = productsHTML +
             <img src="images/icons/checkmark.png">
             Added
           </div>
-          <button class="add-to-cart-button button-primary addToCart" >
+          <button class="add-to-cart-button button-primary addToCart" data-attr-product-name="${
+            itemsInAmazonForUsers.name
+          }" >
             Add to Cart
           </button>
         </div>`;
 });
 
-document.querySelector('.js-products-grid').innerHTML = productsHTML;
+document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
-document.querySelectorAll('.addToCart').forEach((button) => {
-  button.addEventListener('click', () => {
-  })
+document.querySelectorAll(".addToCart").forEach((button) => {
+  button.addEventListener("click", () => {
+    // console.log(button.dataset.attrProductName); // attrProductName shows in console
+    const ProductName = button.dataset.attrProductName;
+    cart.push({
+      ProductName: ProductName,
+      quantity: 1,
+    });
+    console.log(cart);
+  });
 });

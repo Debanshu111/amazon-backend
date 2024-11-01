@@ -46,9 +46,9 @@ products.forEach((itemsInAmazonForUsers) => {
             <img src="images/icons/checkmark.png">
             Added
           </div>
-          <button class="add-to-cart-button button-primary addToCart" data-attr-product-name="${
-            itemsInAmazonForUsers.name
-          }" >
+          <button class="add-to-cart-button button-primary addToCart"
+           data-attr-product-id="${itemsInAmazonForUsers.id}"
+           >
             Add to Cart
           </button>
         </div>`;
@@ -59,12 +59,16 @@ document.querySelector(".js-products-grid").innerHTML = productsHTML;
 document.querySelectorAll(".addToCart").forEach((button) => {
   button.addEventListener("click", () => {
     // console.log(button.dataset.attrProductName); // attrProductName shows in console
-    const ProductName = button.dataset.attrProductName;
+    // const ProductName = button.dataset.attrProductName;
+    // Id is used instead of name because same items can be available in different companies
+    const ProductId = button.dataset.attrProductId;
     //use a variable for matched item to use it later
     let matchingItem;
     //check if the item in the cart is already present
     cart.forEach((item) => {
-      if (ProductName === item.ProductName) {
+      // if (ProductName === item.ProductName) {
+      //used Id instead of Name
+      if (ProductId === item.ProductId) {
         matchingItem = item;
       }
     });
@@ -73,7 +77,8 @@ document.querySelectorAll(".addToCart").forEach((button) => {
       matchingItem.quantity = matchingItem.quantity + 1;
     } else {
       cart.push({
-        ProductName: ProductName,
+        // ProductName: ProductName,
+        ProductId: ProductId,
         quantity: 1,
       });
     }

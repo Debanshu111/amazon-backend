@@ -26,7 +26,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-quantity-container">
-            <select class="js-quantitySelector-${product.id}">
+            <select>
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -47,7 +47,7 @@ products.forEach((product) => {
             Added
           </div>
           <button class="add-to-cart-button button-primary addToCart"
-           data-attr-product-id="${product.id}"
+           data--product-id="${product.id}"
            >
             Add to Cart
           </button>
@@ -58,17 +58,17 @@ document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
 document.querySelectorAll(".addToCart").forEach((button) => {
   button.addEventListener("click", () => {
-    // console.log(button.dataset.attrProductName); // attrProductName shows in console
-    // const ProductName = button.dataset.attrProductName;
+    // console.log(button.dataset.ProductName); // ProductName shows in console
+    // const ProductName = button.dataset.ProductName;
     // Id is used instead of name because same items can be available in different companies
-    const productId = button.dataset.attrproductId;
+    const ProductId = button.dataset.ProductId;
     //use a variable for matched item to use it later
     let matchingItem;
     //check if the item in the cart is already present
     cart.forEach((item) => {
       // if (ProductName === item.ProductName) {
       //used Id instead of Name
-      if (productId === item.productId) {
+      if (ProductId === item.ProductId) {
         matchingItem = item;
       }
     });
@@ -78,7 +78,7 @@ document.querySelectorAll(".addToCart").forEach((button) => {
     } else {
       cart.push({
         // ProductName: ProductName,
-        productId: productId,
+        ProductId: ProductId,
         quantity: 1,
       });
     }
@@ -89,10 +89,8 @@ document.querySelectorAll(".addToCart").forEach((button) => {
     cart.forEach((item) => {
       totalCartQuantity = totalCartQuantity + item.quantity;
     });
-
     document.querySelector(".js-totalCartQuantity").innerHTML =
       totalCartQuantity;
-
     console.log(totalCartQuantity);
     console.log(cart);
   });

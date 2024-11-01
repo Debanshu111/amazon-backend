@@ -26,7 +26,7 @@ products.forEach((itemsInAmazonForUsers) => {
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-quantitySelector-${itemsInAmazonForUsers.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -61,14 +61,14 @@ document.querySelectorAll(".addToCart").forEach((button) => {
     // console.log(button.dataset.attrProductName); // attrProductName shows in console
     // const ProductName = button.dataset.attrProductName;
     // Id is used instead of name because same items can be available in different companies
-    const ProductId = button.dataset.attrProductId;
+    const productId = button.dataset.attrproductId;
     //use a variable for matched item to use it later
     let matchingItem;
     //check if the item in the cart is already present
     cart.forEach((item) => {
       // if (ProductName === item.ProductName) {
       //used Id instead of Name
-      if (ProductId === item.ProductId) {
+      if (productId === item.productId) {
         matchingItem = item;
       }
     });
@@ -78,7 +78,7 @@ document.querySelectorAll(".addToCart").forEach((button) => {
     } else {
       cart.push({
         // ProductName: ProductName,
-        ProductId: ProductId,
+        productId: productId,
         quantity: 1,
       });
     }

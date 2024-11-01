@@ -82,6 +82,16 @@ document.querySelectorAll(".addToCart").forEach((button) => {
         quantity: 1,
       });
     }
+    // To make the Cart interactive, we need to loop through it
+
+    //Need a variable to store the Total Quantity
+    let totalCartQuantity = 0;
+    cart.forEach((item) => {
+      totalCartQuantity = totalCartQuantity + item.quantity;
+    });
+    document.querySelector(".js-totalCartQuantity").innerHTML =
+      totalCartQuantity;
+    console.log(totalCartQuantity);
     console.log(cart);
   });
 });

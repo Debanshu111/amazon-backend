@@ -26,7 +26,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-quantity-selector-${product.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -47,7 +47,7 @@ products.forEach((product) => {
             Added
           </div>
           <button class="add-to-cart-button button-primary addToCart"
-           data--product-id="${product.id}"
+           data-product-id="${product.id}"
            >
             Add to Cart
           </button>
@@ -61,25 +61,36 @@ document.querySelectorAll(".addToCart").forEach((button) => {
     // console.log(button.dataset.ProductName); // ProductName shows in console
     // const ProductName = button.dataset.ProductName;
     // Id is used instead of name because same items can be available in different companies
-    const ProductId = button.dataset.ProductId;
+    const productId = button.dataset.productId;
     //use a variable for matched item to use it later
     let matchingItem;
     //check if the item in the cart is already present
     cart.forEach((item) => {
       // if (ProductName === item.ProductName) {
       //used Id instead of Name
-      if (ProductId === item.ProductId) {
+      if (productId === item.productId) {
         matchingItem = item;
       }
     });
+    //For the quantity dropdown on product
+    const quantitySelector = document.querySelector(
+      `.js-quantity-selector-${productId}`
+    );
+
+    // const quantity = quantitySelector.value; //since it's a number we use it as ...
+    const quantity = Number(quantitySelector.value);
     // Then increase the count instead
     if (matchingItem) {
-      matchingItem.quantity = matchingItem.quantity + 1;
+      // matchingItem.quantity = matchingItem.quantity + 1;
+      //simultaneously we are updating the selection based on the number of quantity selected from dropdown
+      matchingItem.quantity = matchingItem.quantity + quantity;
     } else {
       cart.push({
         // ProductName: ProductName,
-        ProductId: ProductId,
-        quantity: 1,
+        productId: productId,
+        // quantity: 1,
+        //simultaneously we are updating the selection based on the number of quantity selected from dropdown
+        quantity: quantity,
       });
     }
     // To make the Cart interactive, we need to loop through it

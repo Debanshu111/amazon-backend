@@ -42,7 +42,7 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -76,7 +76,6 @@ document.querySelectorAll(".addToCart").forEach((button) => {
     const quantitySelector = document.querySelector(
       `.js-quantity-selector-${productId}`
     );
-
     // const quantity = quantitySelector.value; //since it's a number we use it as ...
     const quantity = Number(quantitySelector.value);
     // Then increase the count instead
@@ -94,6 +93,9 @@ document.querySelectorAll(".addToCart").forEach((button) => {
       });
     }
     // To make the Cart interactive, we need to loop through it
+    //Added To Cart Message
+    const addedMssg = document.querySelector(`.js-added-to-cart-${productId}`);
+    addedMssg.classList.add("addedToCartMssg");
 
     //Need a variable to store the Total Quantity
     let totalCartQuantity = 0;

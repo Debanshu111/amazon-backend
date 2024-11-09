@@ -55,7 +55,6 @@ products.forEach((product) => {
 });
 
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
-
 document.querySelectorAll(".addToCart").forEach((button) => {
   button.addEventListener("click", () => {
     // console.log(button.dataset.ProductName); // ProductName shows in console
@@ -95,9 +94,16 @@ document.querySelectorAll(".addToCart").forEach((button) => {
     // To make the Cart interactive, we need to loop through it
     //Added To Cart Message
     const addedMssg = document.querySelector(`.js-added-to-cart-${productId}`);
-    addedMssg.classList.add("addedToCartMssg");
-    //for a duration we use setTimeout
-    setTimeout(() => {
+    addedMssg.classList.add("addedToCartMssg"); //used for registering it if clicked on add more than once for the same product...linked to below to check if it matches
+
+    //Timeouts for the message popping and duration
+    const addedMessageTimeouts = {};
+    const prevTimeoutId = addedMessageTimeouts[productId];
+    if (prevTimeoutId) {
+      clearTimeout(prevTimeoutId);
+    }
+    // setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       addedMssg.classList.remove("addedToCartMssg");
     }, 3000);
 

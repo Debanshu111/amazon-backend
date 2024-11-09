@@ -96,6 +96,10 @@ document.querySelectorAll(".addToCart").forEach((button) => {
     //Added To Cart Message
     const addedMssg = document.querySelector(`.js-added-to-cart-${productId}`);
     addedMssg.classList.add("addedToCartMssg");
+    //for a duration we use setTimeout
+    setTimeout(() => {
+      addedMssg.classList.remove("addedToCartMssg");
+    }, 3000);
 
     //Need a variable to store the Total Quantity
     let totalCartQuantity = 0;

@@ -58,48 +58,41 @@ products.forEach((product) => {
 });
 
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
+
+//ADD TO CART Function
+
+function addToCart(productId) {
+  let matchingItem;
+  cart.forEach((item) => {
+    if (productId === item.productId) {
+      matchingItem = item;
+    }
+  });
+  //QUANTITY DROPDOWN
+  const quantitySelector = document.querySelector(
+    `.js-quantity-selector-${productId}`
+  );
+  const quantity = Number(quantitySelector.value);
+  //Cart Item already in Cart?
+  if (matchingItem) {
+    matchingItem.quantity = matchingItem.quantity + quantity;
+  } else {
+    cart.push({
+      productId: productId,
+      quantity: quantity,
+    });
+  }
+}
+
 document.querySelectorAll(".addToCart").forEach((button) => {
   button.addEventListener("click", () => {
-    // console.log(button.dataset.ProductName); // ProductName shows in console
-    // const ProductName = button.dataset.ProductName;
-    // Id is used instead of name because same items can be available in different companies
     const productId = button.dataset.productId;
-    //use a variable for matched item to use it later
-    let matchingItem;
-    //check if the item in the cart is already present
-    cart.forEach((item) => {
-      // if (ProductName === item.ProductName) {
-      //used Id instead of Name
-      if (productId === item.productId) {
-        matchingItem = item;
-      }
-    });
-    //For the quantity dropdown on product
-    const quantitySelector = document.querySelector(
-      `.js-quantity-selector-${productId}`
-    );
-    // const quantity = quantitySelector.value; //since it's a number we use it as ...
-    const quantity = Number(quantitySelector.value);
-    // Then increase the count instead
-    if (matchingItem) {
-      // matchingItem.quantity = matchingItem.quantity + 1;
-      //simultaneously we are updating the selection based on the number of quantity selected from dropdown
-      matchingItem.quantity = matchingItem.quantity + quantity;
-    } else {
-      cart.push({
-        // ProductName: ProductName,
-        productId: productId,
-        // quantity: 1,
-        //simultaneously we are updating the selection based on the number of quantity selected from dropdown
-        quantity: quantity,
-      });
-    }
-    // To make the Cart interactive, we need to loop through it
-    //Added To Cart Message
+    addToCart(productId);
+    //MESSAGE
     const addedMssg = document.querySelector(`.js-added-to-cart-${productId}`);
     addedMssg.classList.add("addedToCartMssg"); //used for registering it if clicked on add more than once for the same product...linked to below to check if it matches
 
-    //Timeouts for the message popping and duration
+    //TIMEOUTS for Message
     const addedMessageTimeouts = {};
     const prevTimeoutId = addedMessageTimeouts[productId];
     if (prevTimeoutId) {
@@ -110,7 +103,6 @@ document.querySelectorAll(".addToCart").forEach((button) => {
       addedMssg.classList.remove("addedToCartMssg");
     }, 3000);
 
-    //Need a variable to store the Total Quantity
     let totalCartQuantity = 0;
     cart.forEach((item) => {
       totalCartQuantity = totalCartQuantity + item.quantity;

@@ -59,7 +59,7 @@ products.forEach((product) => {
 
 document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
-//ADD TO CART Function
+//ADD TO CART
 
 function addToCart(productId) {
   let matchingItem;
@@ -84,10 +84,21 @@ function addToCart(productId) {
   }
 }
 
+//UPDATE CART QUANTITY
+
+function updateCartQuantity() {
+  let totalCartQuantity = 0;
+  cart.forEach((item) => {
+    totalCartQuantity = totalCartQuantity + item.quantity;
+  });
+  document.querySelector(".js-totalCartQuantity").innerHTML = totalCartQuantity;
+}
+
 document.querySelectorAll(".addToCart").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId;
     addToCart(productId);
+
     //MESSAGE
     const addedMssg = document.querySelector(`.js-added-to-cart-${productId}`);
     addedMssg.classList.add("addedToCartMssg"); //used for registering it if clicked on add more than once for the same product...linked to below to check if it matches
@@ -102,13 +113,7 @@ document.querySelectorAll(".addToCart").forEach((button) => {
     const timeoutId = setTimeout(() => {
       addedMssg.classList.remove("addedToCartMssg");
     }, 3000);
-
-    let totalCartQuantity = 0;
-    cart.forEach((item) => {
-      totalCartQuantity = totalCartQuantity + item.quantity;
-    });
-    document.querySelector(".js-totalCartQuantity").innerHTML =
-      totalCartQuantity;
+    updateCartQuantity();
     console.log(totalCartQuantity);
     console.log(cart);
   });

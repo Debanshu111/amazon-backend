@@ -1,13 +1,15 @@
 import { cart } from "../data/cart.js";
 import { products } from "../data/products.js";
 
+let cartSummaryHTML = "";
+
 //Generate HTML for Checkout Items
-//Loop on the cart
+//Loop through the cart
 cart.forEach((cartItem) => {
   //Need to use Id to fetch the Product and its details::---
   //getting productId out of the cartItem
   const productId = cartItem.productId;
-  //taking a variable for storing/saving the result
+  //taking a variable for saving the result
   let matchingProduct;
   //Loop through the array
   products.forEach((product) => {
@@ -15,23 +17,28 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   });
-  console.log(matchingProduct);
-  ` <div class="cart-item-container">
+
+  cartSummaryHTML =
+    cartSummaryHTML +
+    ` <div class="cart-item-container">
             <div class="delivery-date">Delivery date: Tuesday, June 21</div>
 
             <div class="cart-item-details-grid">
               <img
                 class="product-image"
-                src="images/products/athletic-cotton-socks-6-pairs.jpg"
+                src="${matchingProduct.image}"
               />
 
               <div class="cart-item-details">
                 <div class="product-name">
-                  Black and Gray Athletic Cotton Socks - 6 Pairs
+                ${matchingProduct.name}
                 </div>
-                <div class="product-price">$10.90</div>
+                <div class="product-price">
+                ${(matchingProduct.priceCents / 100).toFixed(2)}</div>
                 <div class="product-quantity">
-                  <span> Quantity: <span class="quantity-label">2</span> </span>
+                  <span> Quantity: <span class="quantity-label">${
+                    cartItem.quantity
+                  }</span> </span> 
                   <span class="update-quantity-link link-primary">
                     Update
                   </span>
@@ -83,3 +90,6 @@ cart.forEach((cartItem) => {
             </div>
           </div>`;
 });
+
+document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
+console.log(cartSummaryHTML);

@@ -1,5 +1,6 @@
-export const cart = [
-  //Saving the Data
+//Saving the Data
+// export const cart = [
+export let cart = [
   {
     productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     quantity: "2",
@@ -10,7 +11,7 @@ export const cart = [
   },
 ];
 
-//ADD TO CART
+//ADD TO CART FUNCTION
 
 export function addToCart(productId) {
   let matchingItem;
@@ -19,6 +20,7 @@ export function addToCart(productId) {
       matchingItem = cartItem;
     }
   });
+
   //QUANTITY DROPDOWN
   const quantitySelector = document.querySelector(
     `.js-quantity-selector-${productId}`
@@ -33,4 +35,18 @@ export function addToCart(productId) {
       quantity: quantity,
     });
   }
+}
+
+//REMOVE FROM CART FUNCTION
+
+export function removeFromCart(productId) {
+  // let deletedProduct;
+  const newCart = []; //NEW CART for Deleted product check
+  cart.forEach((cartItem) => {
+    //To check whatever is in the cart we loop
+    if (cartItem.productId !== productId) {
+      newCart.push(cartItem); //new cart will be the one after checking delete option, we push cartItem into New Cart
+    }
+  });
+  cart = newCart; //post deletion check...cart is updated...since it's dependent on options lile delete...we change const to let for Cart at the beginning
 }

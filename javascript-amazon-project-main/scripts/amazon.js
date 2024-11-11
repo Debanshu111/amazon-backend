@@ -90,7 +90,7 @@ function popUpMessageTimeout(productId) {
 
 document.querySelectorAll(".addToCart").forEach((button) => {
   button.addEventListener("click", () => {
-    const productId = button.dataset.productId;
+    const productId = button.dataset.productId; //dataset is used for DATA ATTRIBUTES
     addToCart(productId);
     updateCartQuantity();
     popUpMessageTimeout(productId);

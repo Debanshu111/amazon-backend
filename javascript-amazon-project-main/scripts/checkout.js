@@ -21,7 +21,9 @@ cart.forEach((cartItem) => {
 
   cartSummaryHTML =
     cartSummaryHTML +
-    ` <div class="cart-item-container">
+    ` <div class="cart-item-container js-cart-item-container-${
+      matchingProduct.id
+    }">
             <div class="delivery-date">Delivery date: Tuesday, June 21</div>
 
             <div class="cart-item-details-grid">
@@ -102,6 +104,11 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
     const productId = link.dataset.productId; //dataset is used for DATA ATTRIBUTES
     // console.log(productId);
     removeFromCart(productId);
-    console.log(cart);
+    // console.log(cart);
+    const container = document.querySelector(
+      `.js-cart-item-container-${productId}`
+    ); //To select the specific container we need and saving into a variable
+    // console.log(container);
+    container.remove();
   });
 });

@@ -1,15 +1,26 @@
 //Saving the Data
 // export const cart = [
-export const cart = [
-  {
-    productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-    quantity: 2,
-  },
-  {
-    productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-    quantity: 1,
-  },
-];
+export let cart = JSON.parse(localStorage.getItem("cart")); //Need to get cart from Local Storage but since Cart isn't sting normally so it's made back to array using JSON.parse
+
+if (!cart) {
+  //Initially, if we don't have a cart in local storage i.e. products selected = 0, default value for now passed
+  cart = [
+    {
+      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+      quantity: 2,
+    },
+    {
+      productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
+      quantity: 1,
+    },
+  ];
+}
+
+//LOCAL STORAGE FUNCTION
+
+export function saveToStorage() {
+  localStorage.setItem("cart", JSON.stringify(cart)); //Saving to local storage(only saves strings, so cart has been converted to string)
+}
 
 //ADD TO CART FUNCTION
 
@@ -20,7 +31,6 @@ export function addToCart(productId) {
       matchingItem = cartItem;
     }
   });
-
   // console.log(productId);
 
   //QUANTITY DROPDOWN
@@ -37,9 +47,9 @@ export function addToCart(productId) {
       quantity: quantity,
     });
   }
+  saveToStorage();
 }
-
-console.log(cart);
+// console.log(cart);
 
 //REMOVE FROM CART FUNCTION
 
@@ -53,4 +63,5 @@ export function removeFromCart(productId) {
     }
   });
   cart = newCart; //post deletion check...cart is updated...since it's dependent on options lile delete...we change const to let for Cart at the beginning
+  saveToStorage();
 }

@@ -111,3 +111,16 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
     container.remove();
   });
 });
+
+//UPDATE CHECKOUT QUANTITY in Display Function
+
+export function updateCheckoutQuantityDisplay() {
+  let checkedoutCartQuantity = 0;
+  cart.forEach((cartItem) => {
+    checkedoutCartQuantity = checkedoutCartQuantity + cartItem.quantity;
+  });
+  document.querySelector(".js-return-to-home-link").innerHTML =
+    checkedoutCartQuantity;
+}
+
+updateCheckoutQuantityDisplay();

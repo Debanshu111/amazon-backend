@@ -109,6 +109,7 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
     ); //To select the specific container we need and saving into a variable
     // console.log(container);
     container.remove();
+    updateCheckoutQuantityDisplay(); //problem fixed with updating instantly on deleting
   });
 });
 
@@ -120,7 +121,8 @@ export function updateCheckoutQuantityDisplay() {
     checkedoutCartQuantity = checkedoutCartQuantity + cartItem.quantity;
   });
   document.querySelector(".js-return-to-home-link").innerHTML =
-    checkedoutCartQuantity;
+    // checkedoutCartQuantity; //only number was popping, we needed to write 'items' too
+    `${checkedoutCartQuantity} items`;
 }
 
 updateCheckoutQuantityDisplay();

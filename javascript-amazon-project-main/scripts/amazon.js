@@ -88,6 +88,8 @@ function popUpMessageTimeout(productId) {
   }, 3000);
 }
 
+updateCartQuantity(); //For updating always even on Amazon html page
+
 document.querySelectorAll(".addToCart").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId; //dataset is used for DATA ATTRIBUTES

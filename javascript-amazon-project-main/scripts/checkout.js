@@ -116,13 +116,13 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
 //UPDATE CHECKOUT QUANTITY in Display Function
 
 export function updateCheckoutQuantityDisplay() {
-  let checkedoutCartQuantity = 0;
+  let cartQuantity = 0;
   cart.forEach((cartItem) => {
-    checkedoutCartQuantity = checkedoutCartQuantity + cartItem.quantity;
+    cartQuantity = cartQuantity + cartItem.quantity;
   });
   document.querySelector(".js-return-to-home-link").innerHTML =
-    // checkedoutCartQuantity; //only number was popping, we needed to write 'items' too
-    `${checkedoutCartQuantity} items`;
+    // cartQuantity; //only number was popping, we needed to write 'items' too
+    `${cartQuantity} items`;
 }
 
 updateCheckoutQuantityDisplay();

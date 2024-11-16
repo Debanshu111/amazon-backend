@@ -41,7 +41,9 @@ cart.forEach((cartItem) => {
                   <span> Quantity: <span class="quantity-label">${
                     cartItem.quantity
                   }</span> </span> 
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link link-primary js-update-link" data-product-id="${
+                    matchingProduct.id
+                  }">
                     Update
                   </span>
                   <span class="delete-quantity-link link-primary js-delete-link"
@@ -128,3 +130,20 @@ export function updateCheckoutQuantityDisplay() {
 }
 
 updateCheckoutQuantityDisplay();
+
+//UPDATE LINK...in order to update the quantity by clicking update
+document.querySelectorAll(".js-update-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    // console.log("update");
+    const productId = link.dataset.productId; //dataset is used for DATA ATTRIBUTES
+    console.log(productId);
+    // // removeFromCart(productId);
+    // // console.log(cart);
+    // const container = document.querySelector(
+    //   `.js-cart-item-container-${productId}`
+    // ); //To select the specific container we need and saving into a variable
+    // // console.log(container);
+    // container.remove();
+    // updateCheckoutQuantityDisplay(); //problem fixed with updating instantly on deleting
+  });
+});

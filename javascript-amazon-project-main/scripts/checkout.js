@@ -1,4 +1,4 @@
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart, removeFromCart, calculateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -116,10 +116,12 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
 //UPDATE CHECKOUT QUANTITY in Display Function
 
 export function updateCheckoutQuantityDisplay() {
-  let cartQuantity = 0;
-  cart.forEach((cartItem) => {
-    cartQuantity = cartQuantity + cartItem.quantity;
-  });
+  // let cartQuantity = 0;
+  // cart.forEach((cartItem) => {
+  //   cartQuantity = cartQuantity + cartItem.quantity;
+  // });
+  const cartQuantity = calculateCartQuantity();
+
   document.querySelector(".js-return-to-home-link").innerHTML =
     // cartQuantity; //only number was popping, we needed to write 'items' too
     `${cartQuantity} items`;

@@ -65,3 +65,12 @@ export function removeFromCart(productId) {
   cart = newCart; //post deletion check...cart is updated...since it's dependent on options lile delete...we change const to let for Cart at the beginning
   saveToStorage();
 }
+
+//CALCULATE CART QUANTITY FUNCTION used at multiple files, to optiimize
+export function calculateCartQuantity() {
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity = cartQuantity + cartItem.quantity;
+  });
+  return cartQuantity;
+}

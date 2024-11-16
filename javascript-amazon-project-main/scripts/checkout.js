@@ -46,6 +46,12 @@ cart.forEach((cartItem) => {
                   }">
                     Update
                   </span>
+                  <input class="quantity-input">
+                  <span class="save-quantity-link link-primary js-save-link" data-product-id="${
+                    matchingProduct.id
+                  }">
+                  Save
+                  </span>
                   <span class="delete-quantity-link link-primary js-delete-link"
                   data-product-id="${matchingProduct.id}">
                     Delete
@@ -99,6 +105,7 @@ cart.forEach((cartItem) => {
 document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
 
 //DELETE LINK //How to know which product to remove from cart -- attach products' id to link element...used above
+
 document.querySelectorAll(".js-delete-link").forEach((link) => {
   link.addEventListener("click", () => {
     // console.log("delete");
@@ -136,14 +143,11 @@ document.querySelectorAll(".js-update-link").forEach((link) => {
   link.addEventListener("click", () => {
     // console.log("update");
     const productId = link.dataset.productId; //dataset is used for DATA ATTRIBUTES
-    console.log(productId);
-    // // removeFromCart(productId);
-    // // console.log(cart);
-    // const container = document.querySelector(
-    //   `.js-cart-item-container-${productId}`
-    // ); //To select the specific container we need and saving into a variable
-    // // console.log(container);
-    // container.remove();
-    // updateCheckoutQuantityDisplay(); //problem fixed with updating instantly on deleting
+    // console.log(productId);
+    const container = document.querySelector(
+      `.js-cart-item-container-${productId}`
+    ); //To select the specific container we need and saving into a variable
+    // console.log(container);
+    container.classList.add("is-updating-quantity");
   });
 });

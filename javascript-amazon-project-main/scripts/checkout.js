@@ -145,7 +145,7 @@ export function updateCheckoutQuantityDisplay() {
 
 updateCheckoutQuantityDisplay();
 
-//UPDATE LINK...in order to update the quantity by clicking update
+//UPDATE LINK
 document.querySelectorAll(".js-update-link").forEach((link) => {
   link.addEventListener("click", () => {
     // console.log("update");

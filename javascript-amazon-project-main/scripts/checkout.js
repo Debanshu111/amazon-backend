@@ -151,3 +151,16 @@ document.querySelectorAll(".js-update-link").forEach((link) => {
     container.classList.add("is-updating-quantity");
   });
 });
+
+//SAVE LINK
+document.querySelectorAll(".js-save-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    // console.log("save");
+    const productId = link.dataset.productId; //dataset is used for DATA ATTRIBUTES
+    // console.log(productId);
+    const container = document.querySelector(
+      `.js-cart-item-container-${productId}`
+    );
+    container.classList.remove("is-updating-quantity");
+  });
+});

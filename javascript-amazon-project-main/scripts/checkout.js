@@ -165,16 +165,21 @@ document.querySelectorAll(".js-save-link").forEach((link) => {
     // console.log("save");
     const productId = link.dataset.productId; //dataset is used for DATA ATTRIBUTES
     // console.log(productId);
-    const container = document.querySelector(
-      `.js-cart-item-container-${productId}`
-    );
-    container.classList.remove("is-updating-quantity");
     //post input quantity...save it
     const quantityInput = document.querySelector(
       `.js-quantity-input-${productId}`
     );
     const newQuantity = Number(quantityInput.value);
+    //Quantity Validation
+    if (newQuantity < 0 || newQuantity >= 100) {
+      alert("Quantity should be a number between 0-100");
+      return;
+    }
     updateQuantity(productId, newQuantity);
+    const container = document.querySelector(
+      `.js-cart-item-container-${productId}`
+    );
+    container.classList.remove("is-updating-quantity");
     //To update the HTML for quantity and checkout items
     const quantityLabel = document.querySelector(
       `.js-quantity-label-${productId}`

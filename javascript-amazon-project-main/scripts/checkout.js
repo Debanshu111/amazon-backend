@@ -14,7 +14,6 @@ const deliveryDate = today.add(7, "days");
 
 let cartSummaryHTML = "";
 
-//Generate HTML for Checkout Items
 cart.forEach((cartItem) => {
   //Need to use Id to fetch the Product and its details::---
   //getting productId out of the cartItem
@@ -37,21 +36,12 @@ cart.forEach((cartItem) => {
     }
   });
 
-  //DATES INPUT
   const today = dayjs();
-  //In order to add options of dates
-  const deliveryDate = today.add(
-    deliveryOption.deliveryDays, //declared in an array in deliveryOptions.js
-    "days"
-  );
-  //To format the Date in the required one
+  const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
   const dateString = deliveryDate.format("dddd, MMMM D");
 
-  cartSummaryHTML =
-    cartSummaryHTML +
-    `<div class="cart-item-container js-cart-item-container-${
-      matchingProduct.id
-    }">
+  cartSummaryHTML = cartSummaryHTML +    
+    `<div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">Delivery date: ${dateString}</div>
             <div class="cart-item-details-grid">
               <img
@@ -59,34 +49,20 @@ cart.forEach((cartItem) => {
                 src="${matchingProduct.image}"
               />
               <div class="cart-item-details">
-                <div class="product-name">
-                ${matchingProduct.name}
-                </div>
-                <div class="product-price">
-                ${formatCurrency(matchingProduct.priceCents)}
-                </div>
+                <div class="product-name">${matchingProduct.name}</div>
+                <div class="product-price">${formatCurrency(matchingProduct.priceCents)}</div>
                 <div class="product-quantity">
                   <span> Quantity: 
-                    <span class="quantity-label js-quantity-label-${
-                      matchingProduct.id
-                    }">${cartItem.quantity}
-                    </span> 
+                    <span class="quantity-label js-quantity-label-${matchingProduct.id}">${cartItem.quantity}</span> 
                   </span> 
-                  <span class="update-quantity-link link-primary js-update-link" data-product-id="${
-                    matchingProduct.id
-                  }">
+                  <span class="update-quantity-link link-primary js-update-link" data-product-id="${matchingProduct.id}">
                     Update
                   </span>
-                  <input class="quantity-input js-quantity-input-${
-                    matchingProduct.id
-                  }">
-                  <span class="save-quantity-link link-primary js-save-link" data-product-id="${
-                    matchingProduct.id
-                  }">
-                  Save
+                  <input class="quantity-input js-quantity-input-${matchingProduct.id}">
+                  <span class="save-quantity-link link-primary js-save-link" data-product-id="${matchingProduct.id}">
+                    Save
                   </span>
-                  <span class="delete-quantity-link link-primary js-delete-link"
-                  data-product-id="${matchingProduct.id}">
+                  <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                     Delete
                   </span>
                 </div>
@@ -103,34 +79,22 @@ cart.forEach((cartItem) => {
 });
 
 function deliveryOptionsHTML(matchingProduct, cartItem) {
-  //Since matchingProduct and cartItem parameter from somewhere else is used below, it is declared
+
   let html = "";
 
   deliveryOptions.forEach((deliveryOption) => {
-    //DATES INPUT
     const today = dayjs();
-    //In order to add options of dates
-    const deliveryDate = today.add(
-      deliveryOption.deliveryDays, //declared in an array in deliveryOptions.js
-      "days"
-    );
-    //To format the Date in the required one
+    const deliveryDate = today.add(deliveryOption.deliveryDays, "days");
     const dateString = deliveryDate.format("dddd, MMMM D");
 
-    //PRICES INPUT
     const priceString =
-      deliveryOption.priceCents === 0
+        deliveryOption.priceCents === 0
         ? "FREE"
         : `$${formatCurrency(deliveryOption.priceCents)} -`;
 
-    //To figure ot which delivery option should be checked
+    const isChecked = deliveryOption.id === cartItem.deliveryOptionId;    //To figure out which delivery option should be checked
 
-    const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
-
-    //HTML part
-
-    html =
-      html +
+    html =  html +
       `<div class="delivery-option">
         <input
             type="radio"
@@ -140,7 +104,7 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
           />
           <div>
             <div class="delivery-option-date">${dateString}</div>
-             <div class="delivery-option-price">${priceString} Shipping</div>
+            <div class="delivery-option-price">${priceString} Shipping</div>
           </div>
       </div>`;
   });

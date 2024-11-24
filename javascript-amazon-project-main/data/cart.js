@@ -90,3 +90,18 @@ export function updateQuantity(productId, newQuantity) {
   matchingItem.quantity = newQuantity;
   saveToStorage();
 }
+
+//UPDATE DELIVERY OPTION FUNTION
+
+export function updateDeliveryOption(productId, deliveryOptionId){  //Match the delivery date selection as per checked in the radio options
+  let matchingItem;
+  cart.forEach((cartItem) => {
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.deliveryOptionId = deliveryOptionId; 
+
+  saveToStorage();
+}

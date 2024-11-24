@@ -8,7 +8,10 @@ import {
 import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"; //Multiple scripts and naming conflicts can arrive so ESM version is used and default export has been done without usage of {}
-import { deliveryOptions } from "../../data/deliveryOptions.js";
+import {
+  deliveryOptions,
+  getDeliveryOption,
+} from "../../data/deliveryOptions.js";
 
 const today = dayjs();
 const deliveryDate = today.add(7, "days");
@@ -27,12 +30,7 @@ export function renderOrderSummary() {
     //For Delivery Date on the product display, we take deliveryOptionId out of the cartItem and save it in a var
     const deliveryOptionId = cartItem.deliveryOptionId;
     //To check if it is present in the cartItem
-    let deliveryOption;
-    deliveryOptions.forEach((option) => {
-      if (option.id === deliveryOptionId) {
-        deliveryOption = option;
-      }
-    });
+    const deliveryOption = getDeliveryOption(deliveryOptionId);
 
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, "days");

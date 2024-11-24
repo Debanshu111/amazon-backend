@@ -218,8 +218,8 @@ function renderOrderSummary() {
       const deliveryOptionId = element.dataset.deliveryOptionId;
 
       updateDeliveryOption(productId, deliveryOptionId); //update the deliveryOptionId in the cart
-      renderOrderSummary(); //To render it instantaneously
+      renderOrderSummary(); //To render it instantaneously, fucntion calling/re-running itself = RECURSION
     });
   });
 }
-renderOrderSummary();
+renderOrderSummary(); //For regenerating all the Html = MVC = (model-view-controller)

@@ -5,7 +5,7 @@ import {
   updateQuantity,
   updateDeliveryOption,
 } from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { products, getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js"; //Multiple scripts and naming conflicts can arrive so ESM version is used and default export has been done without usage of {}
 import { deliveryOptions } from "../../data/deliveryOptions.js";
@@ -22,12 +22,7 @@ export function renderOrderSummary() {
     //getting productId out of the cartItem
     const productId = cartItem.productId;
 
-    let matchingProduct;
-    products.forEach((product) => {
-      if (product.id === productId) {
-        matchingProduct = product;
-      }
-    });
+    const matchingProduct = getProduct(productId);
 
     //For Delivery Date on the product display, we take deliveryOptionId out of the cartItem and save it in a var
     const deliveryOptionId = cartItem.deliveryOptionId;

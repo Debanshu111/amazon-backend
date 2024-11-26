@@ -210,6 +210,7 @@ export function renderOrderSummary() {
 
       updateDeliveryOption(productId, deliveryOptionId); //update the deliveryOptionId in the cart
       renderOrderSummary(); //To render it instantaneously, fucntion calling/re-running itself = RECURSION
+      renderPaymentSummary(); //generate updated shipping payments
     });
   });
 }

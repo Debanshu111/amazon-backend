@@ -14,9 +14,6 @@ import {
 } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 
-const today = dayjs();
-const deliveryDate = today.add(7, "days");
-
 //To load the delivery Date option from the radio button options instantaneously, we need to re-run the HTML, so put it in a function
 export function renderOrderSummary() {
   let cartSummaryHTML = "";

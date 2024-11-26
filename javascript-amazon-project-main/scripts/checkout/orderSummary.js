@@ -12,6 +12,7 @@ import {
   deliveryOptions,
   getDeliveryOption,
 } from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 
 const today = dayjs();
 const deliveryDate = today.add(7, "days");
@@ -130,17 +131,14 @@ export function renderOrderSummary() {
 
   document.querySelectorAll(".js-delete-link").forEach((link) => {
     link.addEventListener("click", () => {
-      // console.log("delete");
       const productId = link.dataset.productId; //dataset is used for DATA ATTRIBUTES
-      // console.log(productId);
-      removeFromCart(productId);
-      // console.log(cart);
+      removeFromCart(productId); //update the deleted data
       const container = document.querySelector(
         `.js-cart-item-container-${productId}`
       ); //To select the specific container we need and saving into a variable
-      // console.log(container);
       container.remove();
       updateCheckoutQuantityDisplay(); //problem fixed with updating instantly on deleting
+      renderPaymentSummary(); //regenerate all the html for payment
     });
   });
 

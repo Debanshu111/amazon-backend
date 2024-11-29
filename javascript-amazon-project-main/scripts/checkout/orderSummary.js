@@ -130,10 +130,11 @@ export function renderOrderSummary() {
     link.addEventListener("click", () => {
       const productId = link.dataset.productId; //dataset is used for DATA ATTRIBUTES
       removeFromCart(productId); //update the deleted data
-      const container = document.querySelector(
-        `.js-cart-item-container-${productId}`
-      ); //To select the specific container we need and saving into a variable
-      container.remove();
+      // const container = document.querySelector(
+      //   `.js-cart-item-container-${productId}`
+      // ); //To select the specific container we need and saving into a variable
+      // container.remove();
+      renderOrderSummary();
       updateCheckoutQuantityDisplay(); //problem fixed with updating instantly on deleting
       renderPaymentSummary(); //regenerate all the html for payment
     });

@@ -13,6 +13,7 @@ import {
   getDeliveryOption,
 } from "../../data/deliveryOptions.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
+import { renderCheckoutHeader } from "./checkoutHeader.js";
 
 //To load the delivery Date option from the radio button options instantaneously, we need to re-run the HTML, so put it in a function
 export function renderOrderSummary() {
@@ -208,6 +209,7 @@ export function renderOrderSummary() {
       const deliveryOptionId = element.dataset.deliveryOptionId;
 
       updateDeliveryOption(productId, deliveryOptionId); //update the deliveryOptionId in the cart
+      renderCheckoutHeader();
       renderOrderSummary(); //To render it instantaneously, fucntion calling/re-running itself = RECURSION
       renderPaymentSummary(); //generate updated shipping payments
     });

@@ -1,4 +1,3 @@
-//Saving the Data
 // export const cart = [
 export let cart = JSON.parse(localStorage.getItem("cart")); //Need to get cart from Local Storage but since Cart isn't sting normally so it's made back to array using JSON.parse
 
@@ -93,7 +92,8 @@ export function updateQuantity(productId, newQuantity) {
 
 //UPDATE DELIVERY OPTION FUNTION
 
-export function updateDeliveryOption(productId, deliveryOptionId){  //Match the delivery date selection as per checked in the radio options
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  //Match the delivery date selection as per checked in the radio options
   let matchingItem;
   cart.forEach((cartItem) => {
     if (productId === cartItem.productId) {
@@ -101,7 +101,7 @@ export function updateDeliveryOption(productId, deliveryOptionId){  //Match the 
     }
   });
 
-  matchingItem.deliveryOptionId = deliveryOptionId; 
+  matchingItem.deliveryOptionId = deliveryOptionId;
 
   saveToStorage();
 }

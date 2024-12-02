@@ -1,8 +1,14 @@
 // export const cart = [
-export let cart = JSON.parse(localStorage.getItem("cart")); //Need to get cart from Local Storage but since Cart isn't sting normally so it's made back to array using JSON.parse
+export let cart; //Need to get cart from Local Storage but since Cart isn't sting normally so it's made back to array using JSON.parse
 
-if (!cart) {
-  cart = [];
+loadFromStorage();
+
+export function loadFromStorage() {
+  cart = JSON.parse(localStorage.getItem("cart"));
+
+  if (!cart) {
+    cart = [];
+  }
 }
 
 //LOCAL STORAGE FUNCTION

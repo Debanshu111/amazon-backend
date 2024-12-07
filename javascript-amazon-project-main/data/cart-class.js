@@ -1,10 +1,15 @@
+//classes looks like the object that it generates, has both properties and methods(func.)
+//has constructor(let us run setup codes)[helps to group]
+
 class Cart {
   //pascal case naming convention for things that generate obj.
+
   cartItems = undefined;
+  localStorageKey = undefined;
 
   //LOAD FROM STORAGE FUNCTION
   loadFromStorage() {
-    this.cartItems = JSON.parse(localStorage.getItem(localStorageKey));
+    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)); //since localStorageKey doesn't exist inside the method(func inside class), we declared it above.
 
     if (!this.cartItems) {
       this.cartItems = [
@@ -24,7 +29,7 @@ class Cart {
 
   //LOCAL STORAGE FUNCTION
   saveToStorage() {
-    localStorage.setItem(localStorageKey, JSON.stringify(this.cartItems)); //Saving to local storage(only saves strings, so cart has been converted to string)
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems)); //Saving to local storage(only saves strings, so cart has been converted to string)
   }
 
   //ADD TO CART FUNCTION
@@ -104,23 +109,16 @@ class Cart {
   }
 }
 
-//Funtion to create multiple obj.
-function Cart(localStorageKey) {
-  //localStorageKey is used so that different cart can use different parameter
-  //OOPS concept...Cart defined as an obj. to group all data and func into it
-  //can't use keywords directly inside obj
-  //fuction inside obj is called METHOD
-  const cart = {};
+const cart = new Cart(); //new obj generated == each obj created from class is called INSTANCE
+const businessCart = new Cart();
 
-  return cart;
-}
-
-const cart = Cart("cart-oop");
-const businessCart = Cart("cart-business");
+//property set for localStorageKey...SET-UP CODE
+cart.localStorageKey = "cart-oop";
+businessCart.localStorageKey = "cart-business";
 
 cart.loadFromStorage(); //since it's present inside the cart obj.
-
 businessCart.loadFromStorage(); //since it's present inside the businessCart obj.
 
-console.log(cart);
-console.log(businessCart);
+console.log(cart, businessCart);
+
+console.log(cart instanceof Cart, businessCart instanceof Cart);

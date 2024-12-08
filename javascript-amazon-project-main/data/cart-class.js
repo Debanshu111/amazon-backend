@@ -3,17 +3,18 @@
 
 class Cart {
   cartItems = undefined;
-  localStorageKey = undefined;
+  #localStorageKey = undefined; //# is used to make it private, to be used inside the class
 
   //after creating the Cart obj., need setup code
   constructor(localStorageKey) {
-    this.localStorageKey = localStorageKey; //we declare the parameter
-    this.loadFromStorage();
+    this.#localStorageKey = localStorageKey; //we declare the parameter
+    this.#loadFromStorage();
   }
 
   //LOAD FROM STORAGE FUNCTION
-  loadFromStorage() {
-    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)); //since localStorageKey doesn't exist inside the method(func inside class), we declared it above.
+  #loadFromStorage() {
+    //made private
+    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey)); //since localStorageKey doesn't exist inside the method(func inside class), we declared it above.
 
     if (!this.cartItems) {
       this.cartItems = [
@@ -33,7 +34,7 @@ class Cart {
 
   //LOCAL STORAGE FUNCTION
   saveToStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems)); //Saving to local storage(only saves strings, so cart has been converted to string)
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems)); //Saving to local storage(only saves strings, so cart has been converted to string)
   }
 
   //ADD TO CART FUNCTION

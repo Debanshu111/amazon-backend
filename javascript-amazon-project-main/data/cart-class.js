@@ -2,21 +2,13 @@
 //has constructor(let us run setup codes)[helps to group]
 
 class Cart {
-  //pascal case naming convention for things that generate obj.
-
   cartItems = undefined;
   localStorageKey = undefined;
 
   //after creating the Cart obj., need setup code
   constructor(localStorageKey) {
-    // cart.localStorageKey = "cart-oop";
-    // cart.loadFromStorage();
-
     this.localStorageKey = localStorageKey; //we declare the parameter
     this.loadFromStorage();
-
-    // businessCart.localStorageKey = "cart-business";
-    // businessCart.loadFromStorage();
   }
 
   //LOAD FROM STORAGE FUNCTION
@@ -125,5 +117,3 @@ const cart = new Cart("cart-oop"); //new obj generated == each obj created from 
 const businessCart = new Cart("cart-business");
 
 console.log(cart, businessCart);
-
-console.log(cart instanceof Cart, businessCart instanceof Cart);

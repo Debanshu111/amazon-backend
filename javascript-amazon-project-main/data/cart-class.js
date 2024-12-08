@@ -7,6 +7,18 @@ class Cart {
   cartItems = undefined;
   localStorageKey = undefined;
 
+  //after creating the Cart obj., need setup code
+  constructor(localStorageKey) {
+    // cart.localStorageKey = "cart-oop";
+    // cart.loadFromStorage();
+
+    this.localStorageKey = localStorageKey; //we declare the parameter
+    this.loadFromStorage();
+
+    // businessCart.localStorageKey = "cart-business";
+    // businessCart.loadFromStorage();
+  }
+
   //LOAD FROM STORAGE FUNCTION
   loadFromStorage() {
     this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)); //since localStorageKey doesn't exist inside the method(func inside class), we declared it above.
@@ -109,15 +121,8 @@ class Cart {
   }
 }
 
-const cart = new Cart(); //new obj generated == each obj created from class is called INSTANCE
-const businessCart = new Cart();
-
-//property set for localStorageKey...SET-UP CODE
-cart.localStorageKey = "cart-oop";
-businessCart.localStorageKey = "cart-business";
-
-cart.loadFromStorage(); //since it's present inside the cart obj.
-businessCart.loadFromStorage(); //since it's present inside the businessCart obj.
+const cart = new Cart("cart-oop"); //new obj generated == each obj created from class is called INSTANCE
+const businessCart = new Cart("cart-business");
 
 console.log(cart, businessCart);
 

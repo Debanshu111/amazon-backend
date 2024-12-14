@@ -30,6 +30,10 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  extraInfoHTML() {
+    return ""; //passed to make it work something for all type product
+  }
 }
 
 //use of inheritence  [child and parent class]
@@ -40,6 +44,13 @@ class Clothing extends Product {
     //calling from the parent class = super()
     super(productDetails);
     this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  extraInfoHTML() {
+    return `
+    <a href="${this.sizeChartLink}" target="_blank">Size Chart</a>
+    `;
+    //target helps in opening it into a new tab
   }
 }
 
@@ -551,6 +562,9 @@ export const products = [
     priceCents: 2999,
   },
 ].map((productDetails) => {
+  //To make it an array method //map loops through array
+  if (productDetails.type === "clothing") {
+    return new Clothing(productDetails);
+  }
   return new Product(productDetails);
-}); //To make it an array method //map loops through array
-// console.log(products);
+});

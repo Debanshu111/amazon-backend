@@ -1,3 +1,5 @@
+import { formatCurrency } from "../scripts/utils/money.js";
+
 export function getProduct(productId) {
   let matchingProduct;
   products.forEach((product) => {
@@ -22,20 +24,13 @@ class Product {
     this.rating = productDetails.rating;
     this.priceCents = productDetails.priceCents;
   }
+  getStarsUrl() {
+    return `images/ratings/rating-${this.rating.stars.toFixed(1)}.png`;
+  }
+  getPrice() {
+    return `$${formatCurrency(this.priceCents)}`;
+  }
 }
-
-const product1 = new Product({
-  id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-  image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-  name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-  rating: {
-    stars: 4.5,
-    count: 87,
-  },
-  priceCents: 1090,
-  keywords: ["socks", "sports", "apparel"],
-});
-console.log(product1);
 
 export const products = [
   {
@@ -528,4 +523,7 @@ export const products = [
     },
     priceCents: 2999,
   },
-];
+].map((productDetails) => {
+  return new Product(productDetails);
+}); //To make it an array method //map loops through array
+console.log(products);

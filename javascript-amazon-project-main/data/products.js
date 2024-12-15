@@ -171,6 +171,9 @@ export const products = [
     },
     priceCents: 3499,
     keywords: ["kitchen", "cookware"],
+    type: "appliance",
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png",
   },
   {
     id: "dd82ca78-a18b-4e2a-9250-31e67412f98d",
@@ -182,6 +185,8 @@ export const products = [
     },
     priceCents: 2400,
     keywords: ["hoodies", "sweaters", "apparel"],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png",
   },
   {
     id: "77919bbe-0e56-475b-adde-4f24dfed3a04",
@@ -272,6 +277,8 @@ export const products = [
     },
     priceCents: 1699,
     keywords: ["shorts", "apparel", "mens"],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png",
   },
   {
     id: "c2a82c5e-aff4-435f-9975-517cfaba2ece",
@@ -283,6 +290,9 @@ export const products = [
     },
     priceCents: 3074,
     keywords: ["water boiler", "appliances", "kitchen"],
+    type: "appliance",
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png",
   },
   {
     id: "6b07d4e7-f540-454e-8a1e-363f25dbae7d",
@@ -408,6 +418,8 @@ export const products = [
     },
     priceCents: 2290,
     keywords: ["pants", "apparel", "mens"],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png",
   },
   {
     id: "1c079479-8586-494f-ab53-219325432536",
@@ -441,6 +453,9 @@ export const products = [
     },
     priceCents: 6797,
     keywords: ["cooking set", "kitchen"],
+    type: "appliance",
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png",
   },
   {
     id: "a434b69f-1bc1-482d-9ce7-cd7f4a66ce8d",
@@ -463,6 +478,8 @@ export const products = [
     },
     priceCents: 2400,
     keywords: ["pants", "sweatpants", "jogging", "apparel", "womens"],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png",
   },
   {
     id: "d339adf3-e004-4c20-a120-40e8874c66cb",
@@ -496,6 +513,9 @@ export const products = [
     },
     priceCents: 2250,
     keywords: ["coffeemakers", "kitchen", "appliances"],
+    type: "appliance",
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png",
   },
   {
     id: "02e3a47e-dd68-467e-9f71-8bf6f723fdae",
@@ -540,6 +560,9 @@ export const products = [
     },
     priceCents: 10747,
     keywords: ["food blenders", "kitchen", "appliances"],
+    type: "appliance",
+    instructionsLink: "images/appliance-instructions.png",
+    warrantyLink: "images/appliance-warranty.png",
   },
   {
     id: "36c64692-677f-4f58-b5ec-0dc2cf109e27",
@@ -573,6 +596,8 @@ export const products = [
     },
     priceCents: 2400,
     keywords: ["sweaters", "hoodies", "apparel", "mens"],
+    type: "clothing",
+    sizeChartLink: "images/clothing-size-chart.png",
   },
   {
     id: "id1",

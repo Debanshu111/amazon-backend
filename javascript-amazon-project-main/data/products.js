@@ -568,3 +568,6 @@ export const products = [
   }
   return new Product(productDetails);
 });
+
+// Inside a method "this" points to outer Obj. but inside function it is undefined
+// Arrow Functions do not change the value of "this"
